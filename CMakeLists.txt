@@ -14,7 +14,6 @@ endif()
 # Source files
 set(SOURCES
     src/main.cpp
-    src/tensor.cpp
 )
 
 # Include directories
