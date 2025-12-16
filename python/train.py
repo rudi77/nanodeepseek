@@ -115,6 +115,8 @@ def validate(model: NanoDeepSeek, dataloader: DataLoader, device: torch.device) 
     total_loss = 0.0
     num_batches = 0
     
+    logger.info("Starting validation")
+
     with torch.no_grad():
         for inputs, targets in dataloader:
             inputs, targets = inputs.to(device), targets.to(device)

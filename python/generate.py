@@ -8,7 +8,8 @@ from pathlib import Path
 import logging
 
 from nanodeepseek.model.model import NanoDeepSeek
-from nanodeepseek.data.tokenizer import SimpleTokenizer
+from nanodeepseek.data.tokenizer import build_tokenizer
+from transformers import AutoTokenizer
 
 
 # Setup logging
@@ -16,16 +17,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def load_model_and_tokenizer(checkpoint_path: str, tokenizer_path: str, device: torch.device):
+def load_model_and_tokenizer(checkpoint_path: str, device: torch.device):
     """Load trained model and tokenizer"""
-    
-    # Load tokenizer
-    tokenizer = SimpleTokenizer.load(tokenizer_path)
-    logger.info(f"Loaded tokenizer with vocab size: {tokenizer.get_vocab_size()}")
     
     # Load model checkpoint
     checkpoint = torch.load(checkpoint_path, map_location=device)
     config = checkpoint['config']
+    
+    # Load GPT-2 tokenizer
+    tokenizer = build_tokenizer("gpt2")
+    logger.info(f"Loaded GPT-2 tokenizer with vocab size: {tokenizer.vocab_size}")
     
     # Initialize model
     model = NanoDeepSeek(
@@ -49,7 +50,7 @@ def load_model_and_tokenizer(checkpoint_path: str, tokenizer_path: str, device: 
 
 def generate_text(
     model: NanoDeepSeek,
-    tokenizer: SimpleTokenizer,
+    tokenizer: AutoTokenizer,
     prompt: str,
     max_new_tokens: int = 100,
     temperature: float = 1.0,
@@ -60,7 +61,7 @@ def generate_text(
     """Generate text from a prompt"""
     
     # Encode prompt
-    prompt_tokens = tokenizer.encode(prompt, add_bos=True, add_eos=False)
+    prompt_tokens = tokenizer.encode(prompt)
     tokens = torch.tensor([prompt_tokens], dtype=torch.long, device=device)
     
     logger.info(f"Prompt: '{prompt}'")
@@ -83,7 +84,7 @@ def generate_text(
     return generated_text
 
 
-def interactive_mode(model: NanoDeepSeek, tokenizer: SimpleTokenizer, device: torch.device):
+def interactive_mode(model: NanoDeepSeek, tokenizer: AutoTokenizer, device: torch.device):
     """Interactive text generation mode"""
     
     print("🚀 NanoDeepSeek Interactive Mode")
@@ -175,7 +176,6 @@ def interactive_mode(model: NanoDeepSeek, tokenizer: SimpleTokenizer, device: to
 def main():
     parser = argparse.ArgumentParser(description='Generate text with NanoDeepSeek model')
     parser.add_argument('--checkpoint', type=str, required=True, help='Path to model checkpoint')
-    parser.add_argument('--tokenizer', type=str, required=True, help='Path to tokenizer file')
     parser.add_argument('--prompt', type=str, help='Text prompt for generation')
     parser.add_argument('--max_tokens', type=int, default=100, help='Maximum tokens to generate')
     parser.add_argument('--temperature', type=float, default=1.0, help='Sampling temperature')
@@ -194,13 +194,9 @@ def main():
         logger.error(f"Checkpoint file not found: {args.checkpoint}")
         return
     
-    if not Path(args.tokenizer).exists():
-        logger.error(f"Tokenizer file not found: {args.tokenizer}")
-        return
-    
     # Load model and tokenizer
     try:
-        model, tokenizer = load_model_and_tokenizer(args.checkpoint, args.tokenizer, device)
+        model, tokenizer = load_model_and_tokenizer(args.checkpoint, device)
     except Exception as e:
         logger.error(f"Failed to load model: {e}")
         return
