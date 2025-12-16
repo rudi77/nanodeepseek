@@ -49,3 +49,13 @@ Makefile
 cmake_install.cmake
 
 build/
+
+
+# python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.ipynb_checkpoints
+.env

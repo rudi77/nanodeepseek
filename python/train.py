@@ -15,8 +15,8 @@ from typing import List, Dict, Any
 import logging
 
 from nanodeepseek.model.model import NanoDeepSeek
-from nanodeepseek.data.tokenizer import SimpleTokenizer
-
+from nanodeepseek.data.tokenizer import build_tokenizer
+from  transformers import AutoTokenizer
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -26,14 +26,14 @@ logger = logging.getLogger(__name__)
 class TextDataset(Dataset):
     """Simple text dataset for training"""
     
-    def __init__(self, texts: List[str], tokenizer: SimpleTokenizer, max_length: int = 512):
+    def __init__(self, texts: List[str], tokenizer: AutoTokenizer, max_length: int = 512):
         self.tokenizer = tokenizer
         self.max_length = max_length
         
         # Tokenize all texts
         self.tokens = []
         for text in texts:
-            token_ids = tokenizer.encode(text, add_bos=True, add_eos=True)
+            token_ids = tokenizer.encode(text)
             
             # Split into chunks if too long
             for i in range(0, len(token_ids), max_length):
@@ -49,7 +49,7 @@ class TextDataset(Dataset):
         
         # Pad if necessary
         if len(tokens) < self.max_length:
-            pad_id = self.tokenizer.encoder[self.tokenizer.pad_token]
+            pad_id = self.tokenizer.pad_token_id
             tokens = tokens + [pad_id] * (self.max_length - len(tokens))
         
         # Convert to tensor
@@ -159,17 +159,10 @@ def main():
     
     logger.info(f"Loaded {len(texts)} text samples")
     
-    # Initialize tokenizer
-    tokenizer = SimpleTokenizer(vocab_size=args.vocab_size)
-    
-    # Train tokenizer
-    logger.info("Training tokenizer...")
-    tokenizer.train(texts)
-    actual_vocab_size = tokenizer.get_vocab_size()
-    logger.info(f"Tokenizer trained with vocabulary size: {actual_vocab_size}")
-    
-    # Save tokenizer
-    tokenizer.save(save_dir / "tokenizer.json")
+    # Initialize pre-trained tokenizer (GPT-2)
+    tokenizer = build_tokenizer("gpt2")
+    actual_vocab_size = tokenizer.vocab_size
+    logger.info(f"Using GPT-2 tokenizer with vocabulary size: {actual_vocab_size}")
     
     # Create datasets
     train_size = int(0.9 * len(texts))

@@ -30,7 +30,10 @@ class TransformerBlock(nn.Module):
         
         self.dim = dim
         hidden_dim = hidden_dim if hidden_dim is not None else 4 * dim
-        
+
+        # norm1   
+        self.attention_norm = RMSNorm(dim, eps=norm_eps)
+
         # Multi-Head Latent Attention
         self.attention = MLA(
             dim=dim,
@@ -41,17 +44,17 @@ class TransformerBlock(nn.Module):
             max_seq_len=max_seq_len,
             bias=bias
         )
-        
+
+        # norm2
+        self.ffn_norm = RMSNorm(dim, eps=norm_eps)
+
         # Feed Forward Network with SwiGLU
         self.feed_forward = SwiGLU(
             dim_in=dim,
             dim_hidden=hidden_dim,
             bias=bias
         )
-        
-        # Layer normalization
-        self.attention_norm = RMSNorm(dim, eps=norm_eps)
-        self.ffn_norm = RMSNorm(dim, eps=norm_eps)
+    
     
     def forward(self, x: torch.Tensor, mask: torch.Tensor = None, start_pos: int = 0):
         # Attention with residual connection

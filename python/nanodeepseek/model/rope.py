@@ -72,7 +72,10 @@ class RoPE(nn.Module):
         x_complex = torch.view_as_complex(x.float().reshape(*x.shape[:-1], -1, 2))
         
         # Apply rotation
-        x_rotated = x_complex * freqs_cis.unsqueeze(0).unsqueeze(0)
+        # freqs_cis shape: [seq_len, head_dim/2]
+        # x_complex shape: [batch, seq_len, n_heads, head_dim/2]
+        # unsqueeze(0) adds batch dim, unsqueeze(2) adds heads dim for broadcasting
+        x_rotated = x_complex * freqs_cis.unsqueeze(0).unsqueeze(2)
         
         # Convert back to real
         x_out = torch.view_as_real(x_rotated).flatten(-2)

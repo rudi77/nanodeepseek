@@ -39,6 +39,7 @@ class MLA(nn.Module):
         # Latent projections
         self.q_latent = nn.Linear(dim, self.latent_dim, bias=bias)
         self.kv_latent = nn.Linear(dim, self.latent_dim, bias=bias)
+        self.latent_proj = nn.Linear(self.latent_dim, n_heads * self.head_dim, bias=bias)
         
         # Output projection
         self.wo = nn.Linear(n_heads * self.head_dim, dim, bias=bias)
@@ -98,8 +99,9 @@ class MLA(nn.Module):
         latent_out = torch.matmul(latent_weights, kv_latent)
         
         # Combine standard and latent attention
-        # This is a simplified combination - the actual DeepSeek-V2 may use a different approach
-        combined_out = out + latent_out.unsqueeze(1).expand(-1, self.n_heads, -1, -1).contiguous().view(batch_size, seq_len, -1)
+        # Project latent output to match the standard attention output dimension
+        latent_out_proj = self.latent_proj(latent_out)  # [batch, seq, n_heads * head_dim]
+        combined_out = out + latent_out_proj
         
         # Final output projection
         return self.wo(combined_out)
