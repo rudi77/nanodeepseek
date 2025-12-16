@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: nanodeepseek
+Version: 0.1.0
+Summary: A simplified implementation of DeepSeek model with Multi-Head Latent Attention
+Author-email: NanoDeepSeek Team <team@nanodeepseek.ai>
+License: MIT
+Project-URL: Homepage, https://github.com/nanodeepseek/nanodeepseek
+Project-URL: Documentation, https://nanodeepseek.readthedocs.io
+Project-URL: Repository, https://github.com/nanodeepseek/nanodeepseek
+Project-URL: Bug Tracker, https://github.com/nanodeepseek/nanodeepseek/issues
+Keywords: deep learning,transformer,language model,pytorch,attention
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.0.0
+Requires-Dist: torchvision>=0.15.0
+Requires-Dist: torchaudio>=2.0.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: datasets>=2.0.0
+Requires-Dist: transformers>=4.20.0
+Requires-Dist: tokenizers>=0.13.0
+Requires-Dist: sentencepiece>=0.1.95
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: omegaconf>=2.3.0
+Requires-Dist: wandb>=0.15.0
+Requires-Dist: tensorboard>=2.13.0
+Requires-Dist: tqdm>=4.64.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: einops>=0.6.0
+Requires-Dist: pathlib2>=2.3.6; python_version < "3.4"
+Requires-Dist: json5>=0.9.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-mock>=3.10.0; extra == "dev"
+Requires-Dist: pytest-xdist>=3.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Requires-Dist: sphinx>=6.0.0; extra == "dev"
+Requires-Dist: sphinx-rtd-theme>=1.2.0; extra == "dev"
+Requires-Dist: myst-parser>=1.0.0; extra == "dev"
+Requires-Dist: line_profiler>=4.0.0; extra == "dev"
+Requires-Dist: memory_profiler>=0.60.0; extra == "dev"
+Requires-Dist: py-spy>=0.3.0; extra == "dev"
+Provides-Extra: training
+Requires-Dist: accelerate>=0.20.0; extra == "training"
+Requires-Dist: deepspeed>=0.9.0; extra == "training"
+Requires-Dist: fairscale>=0.4.0; extra == "training"
+Requires-Dist: lion-pytorch>=0.1.0; extra == "training"
+Requires-Dist: timm>=0.9.0; extra == "training"
+Requires-Dist: datasets[streaming]>=2.0.0; extra == "training"
+Requires-Dist: huggingface_hub>=0.15.0; extra == "training"
+Requires-Dist: wandb>=0.15.0; extra == "training"
+Requires-Dist: mlflow>=2.0.0; extra == "training"
+Requires-Dist: tensorboard>=2.13.0; extra == "training"
+Provides-Extra: inference
+Requires-Dist: onnx>=1.14.0; extra == "inference"
+Requires-Dist: onnxruntime>=1.15.0; extra == "inference"
+Requires-Dist: triton>=2.0.0; extra == "inference"
+Requires-Dist: bitsandbytes>=0.41.0; extra == "inference"
+Requires-Dist: auto-gptq>=0.3.0; extra == "inference"
+Requires-Dist: fastapi>=0.100.0; extra == "inference"
+Requires-Dist: uvicorn>=0.23.0; extra == "inference"
+Requires-Dist: pydantic>=2.0.0; extra == "inference"
+Provides-Extra: jupyter
+Requires-Dist: jupyter>=1.0.0; extra == "jupyter"
+Requires-Dist: jupyterlab>=4.0.0; extra == "jupyter"
+Requires-Dist: ipywidgets>=8.0.0; extra == "jupyter"
+Requires-Dist: matplotlib>=3.6.0; extra == "jupyter"
+Requires-Dist: seaborn>=0.12.0; extra == "jupyter"
+Requires-Dist: plotly>=5.15.0; extra == "jupyter"
+Provides-Extra: all
+Requires-Dist: nanodeepseek[dev,inference,jupyter,training]; extra == "all"

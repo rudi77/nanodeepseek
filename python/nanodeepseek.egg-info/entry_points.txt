@@ -1,0 +1,3 @@
+[console_scripts]
+nanodeepseek-generate = generate:main
+nanodeepseek-train = train:main

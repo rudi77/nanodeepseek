@@ -1,0 +1,17 @@
+pyproject.toml
+nanodeepseek.egg-info/PKG-INFO
+nanodeepseek.egg-info/SOURCES.txt
+nanodeepseek.egg-info/dependency_links.txt
+nanodeepseek.egg-info/entry_points.txt
+nanodeepseek.egg-info/requires.txt
+nanodeepseek.egg-info/top_level.txt
+src/__init__.py
+src/data/__init__.py
+src/data/tokenizer.py
+src/model/__init__.py
+src/model/block.py
+src/model/mla.py
+src/model/model.py
+src/model/rmsnorm.py
+src/model/rope.py
+src/model/swiglu.py
