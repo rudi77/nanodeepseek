@@ -1,5 +1,35 @@
 """
 Rotary Position Embedding (RoPE) implementation for NanoDeepSeek.
+
+How this implementation works:
+==============================
+
+1. Vector to Complex (Transformation)
+   The input vector x is taken pairwise (even and odd indices) and converted into 
+   complex numbers. From [x1, x2, x3, x4] becomes [x1 + ix2, x3 + ix4].
+   
+   Code: torch.view_as_complex(x.float().reshape(*x.shape[:-1], -1, 2))
+
+2. Rotation Factors (Preparation)
+   Instead of separate cos and sin tensors, the function _precompute_freqs_cis 
+   computes the rotation factors directly in complex form (torch.polar). 
+   A rotation factor R for an angle θ is: R = cos(θ) + i·sin(θ).
+
+3. Rotation (Multiplication)
+   Rotation in the complex number space is simply a multiplication:
+   (a + bi) · (cos(θ) + i·sin(θ))
+   
+   The result of this multiplication is exactly (y₁ + iy₂), where y₁ and y₂ 
+   correspond to the rotation formulas mentioned above.
+   
+   Code: x_rotated = x_complex * freqs_cis.unsqueeze(0).unsqueeze(0)
+
+4. Complex to Vector (Back-transformation)
+   The result is decomposed back into its real and imaginary parts and combined 
+   into a flat vector.
+   
+   Code: torch.view_as_real(x_rotated).flatten(-2)
+
 """
 
 import torch
@@ -53,3 +83,16 @@ class RoPE(nn.Module):
         q_rotated = self.apply_rotary_emb(q, start_pos)
         k_rotated = self.apply_rotary_emb(k, start_pos)
         return q_rotated, k_rotated
+
+
+if __name__ == "__main__":
+    # Simpler example with smaller dimensions
+    print("\n--- Simpler Example ---")
+    rope_simple = RoPE(dim=4, max_seq_len=8)
+    x_simple = torch.randn(1, 3, 4)  # (batch=1, seq_len=3, dim=4)
+    print("Input shape:", x_simple.shape)
+    print("Input:\n", x_simple)
+    
+    q_rot, k_rot = rope_simple(x_simple, x_simple)
+    print("\nRotated Q shape:", q_rot.shape)
+    print("Rotated Q:\n", q_rot)
