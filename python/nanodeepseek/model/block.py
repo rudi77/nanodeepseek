@@ -5,7 +5,7 @@ Transformer Block implementation for NanoDeepSeek.
 import torch
 import torch.nn as nn
 from .rmsnorm import RMSNorm
-from .mla import MLA
+from .attention import MLA
 from .swiglu import SwiGLU
 
 

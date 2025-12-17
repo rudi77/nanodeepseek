@@ -5,7 +5,7 @@ param(
     [int]$Dim = 512,
     [int]$Layers = 8,
     [int]$Heads = 8,
-    [int]$MaxSeqLen = 512,
+    [int]$MaxSeqLen = 128, # später auf 512
     [int]$BatchSize = 8,
     [float]$LearningRate = 0.0003,
     [int]$Epochs = 1,

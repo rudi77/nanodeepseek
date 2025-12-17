@@ -24,39 +24,29 @@ logger = logging.getLogger(__name__)
 
 
 class TextDataset(Dataset):
-    """Simple text dataset for training"""
-    
-    def __init__(self, texts: List[str], tokenizer: AutoTokenizer, max_length: int = 512):
-        self.tokenizer = tokenizer
+    def __init__(self, texts, tokenizer, max_length=512):
         self.max_length = max_length
-        
-        # Tokenize all texts
-        self.tokens = []
+        pad_id = tokenizer.pad_token_id
+
+        chunks = []
         for text in texts:
-            token_ids = tokenizer.encode(text)
-            
-            # Split into chunks if too long
-            for i in range(0, len(token_ids), max_length):
-                chunk = token_ids[i:i + max_length]
-                if len(chunk) > 1:  # Need at least 2 tokens for input/target
-                    self.tokens.append(chunk)
-    
+            ids = tokenizer.encode(text)
+            for i in range(0, len(ids), max_length):
+                c = ids[i:i+max_length]
+                if len(c) > 1:
+                    if len(c) < max_length:
+                        c = c + [pad_id] * (max_length - len(c))
+                    chunks.append(c)
+
+        self.tokens = torch.tensor(chunks, dtype=torch.long)  # [N, max_length]
+
     def __len__(self):
-        return len(self.tokens)
-    
+        return self.tokens.size(0)
+
     def __getitem__(self, idx):
-        tokens = self.tokens[idx]
-        
-        # Pad if necessary
-        if len(tokens) < self.max_length:
-            pad_id = self.tokenizer.pad_token_id
-            tokens = tokens + [pad_id] * (self.max_length - len(tokens))
-        
-        # Convert to tensor
-        tokens = torch.tensor(tokens, dtype=torch.long)
-        
-        # Input is all tokens except last, target is all tokens except first
-        return tokens[:-1], tokens[1:]
+        t = self.tokens[idx]
+        return t[:-1], t[1:]
+
 
 
 def load_sample_data() -> List[str]:
