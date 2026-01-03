@@ -61,4 +61,6 @@ __pycache__/
 .env
 
 checkpoints/
-data
+
+# Large downloaded corpora / raw resources (do not commit)
+data/dach_accounting_resources_raw/
