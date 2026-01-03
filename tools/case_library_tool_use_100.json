@@ -1,0 +1,347 @@
+[
+  {
+    "template_id": "TU-001",
+    "category": "calculation",
+    "sub_category": "vat",
+    "industry_focus": ["all"],
+    "description": "Berechne Bruttobetrag aus Nettobetrag und USt-Satz",
+    "tool_sequence": ["calculator"],
+    "input_params": {
+      "net_amount": {"type": "amount", "min": 100, "max": 50000},
+      "vat_rate": {"type": "percentage", "values": [0.10, 0.20]}
+    },
+    "expected_output": "gross_amount",
+    "instruction_pattern": "Berechne den Bruttobetrag für {net_amount} EUR netto bei {vat_rate_percent}% USt."
+  },
+  {
+    "template_id": "TU-002",
+    "category": "calculation",
+    "sub_category": "vat",
+    "industry_focus": ["all"],
+    "description": "Berechne Nettobetrag aus Bruttobetrag und USt-Satz",
+    "tool_sequence": ["calculator"],
+    "input_params": {
+      "gross_amount": {"type": "amount", "min": 100, "max": 50000},
+      "vat_rate": {"type": "percentage", "values": [0.10, 0.20]}
+    },
+    "expected_output": "net_amount",
+    "instruction_pattern": "Berechne den Nettobetrag für {gross_amount} EUR brutto bei {vat_rate_percent}% USt."
+  },
+  {
+    "template_id": "TU-003",
+    "category": "calculation",
+    "sub_category": "vat",
+    "industry_focus": ["all"],
+    "description": "Berechne USt-Betrag aus Nettobetrag",
+    "tool_sequence": ["calculator"],
+    "input_params": {
+      "net_amount": {"type": "amount", "min": 100, "max": 50000},
+      "vat_rate": {"type": "percentage", "values": [0.10, 0.20]}
+    },
+    "expected_output": "vat_amount",
+    "instruction_pattern": "Wie hoch ist die Umsatzsteuer für {net_amount} EUR netto bei {vat_rate_percent}% USt?"
+  },
+  {
+    "template_id": "TU-004",
+    "category": "calculation",
+    "sub_category": "rounding",
+    "industry_focus": ["all"],
+    "description": "Runde Betrag auf 2 Dezimalstellen",
+    "tool_sequence": ["calculator"],
+    "input_params": {
+      "amount": {"type": "precise_amount", "min": 100, "max": 50000}
+    },
+    "expected_output": "rounded_amount",
+    "instruction_pattern": "Runde {amount} auf 2 Dezimalstellen."
+  },
+  {
+    "template_id": "TU-005",
+    "category": "calculation",
+    "sub_category": "percentage",
+    "industry_focus": ["all"],
+    "description": "Berechne Skonto-Betrag",
+    "tool_sequence": ["calculator"],
+    "input_params": {
+      "invoice_amount": {"type": "amount", "min": 500, "max": 100000},
+      "discount_rate": {"type": "percentage", "values": [0.02, 0.03]}
+    },
+    "expected_output": "discount_amount",
+    "instruction_pattern": "Berechne den Skontobetrag für eine Rechnung über {invoice_amount} EUR bei {discount_rate_percent}% Skonto."
+  },
+  {
+    "template_id": "TU-006",
+    "category": "account_lookup",
+    "sub_category": "search_by_name",
+    "industry_focus": ["all"],
+    "description": "Finde Kontonummer für Bank",
+    "tool_sequence": ["account_lookup"],
+    "input_params": {
+      "account_name": {"type": "fixed", "value": "Bank"}
+    },
+    "expected_output": "account_number",
+    "instruction_pattern": "Welche Kontonummer hat das Konto 'Bank' im SKR03?"
+  },
+  {
+    "template_id": "TU-007",
+    "category": "account_lookup",
+    "sub_category": "search_by_name",
+    "industry_focus": ["all"],
+    "description": "Finde Kontonummer für Kasse",
+    "tool_sequence": ["account_lookup"],
+    "input_params": {
+      "account_name": {"type": "fixed", "value": "Kasse"}
+    },
+    "expected_output": "account_number",
+    "instruction_pattern": "Welche Kontonummer hat das Konto 'Kasse'?"
+  },
+  {
+    "template_id": "TU-008",
+    "category": "account_lookup",
+    "sub_category": "search_by_name",
+    "industry_focus": ["all"],
+    "description": "Finde Kontonummer für Forderungen",
+    "tool_sequence": ["account_lookup"],
+    "input_params": {
+      "account_name": {"type": "fixed", "value": "Forderungen aus Lieferungen und Leistungen"}
+    },
+    "expected_output": "account_number",
+    "instruction_pattern": "Welches Konto verwende ich für Kundenforderungen?"
+  },
+  {
+    "template_id": "TU-009",
+    "category": "account_lookup",
+    "sub_category": "search_by_name",
+    "industry_focus": ["all"],
+    "description": "Finde Kontonummer für Verbindlichkeiten",
+    "tool_sequence": ["account_lookup"],
+    "input_params": {
+      "account_name": {"type": "fixed", "value": "Verbindlichkeiten aus Lieferungen und Leistungen"}
+    },
+    "expected_output": "account_number",
+    "instruction_pattern": "Auf welches Konto buche ich Lieferantenverbindlichkeiten?"
+  },
+  {
+    "template_id": "TU-010",
+    "category": "account_lookup",
+    "sub_category": "search_by_name",
+    "industry_focus": ["all"],
+    "description": "Finde Kontonummer für Umsatzsteuer",
+    "tool_sequence": ["account_lookup"],
+    "input_params": {
+      "account_name": {"type": "fixed", "value": "Umsatzsteuer"}
+    },
+    "expected_output": "account_number",
+    "instruction_pattern": "Welche Kontonummer hat die Umsatzsteuer?"
+  },
+  {
+    "template_id": "TU-011",
+    "category": "date",
+    "sub_category": "payment_terms",
+    "industry_focus": ["all"],
+    "description": "Berechne Zahlungsziel",
+    "tool_sequence": ["date_calculator"],
+    "input_params": {
+      "invoice_date": {"type": "date"},
+      "days": {"type": "integer", "values": [14, 30, 60, 90]}
+    },
+    "expected_output": "due_date",
+    "instruction_pattern": "Wann ist das Zahlungsziel bei Rechnungsdatum {invoice_date} und {days} Tagen Zahlungsfrist?"
+  },
+  {
+    "template_id": "TU-012",
+    "category": "date",
+    "sub_category": "skonto_deadline",
+    "industry_focus": ["all"],
+    "description": "Berechne Skonto-Frist",
+    "tool_sequence": ["date_calculator"],
+    "input_params": {
+      "invoice_date": {"type": "date"},
+      "days": {"type": "integer", "values": [7, 10, 14]}
+    },
+    "expected_output": "skonto_deadline",
+    "instruction_pattern": "Bis wann kann Skonto abgezogen werden bei Rechnungsdatum {invoice_date} und {days} Tagen Skontofrist?"
+  },
+  {
+    "template_id": "TU-013",
+    "category": "date",
+    "sub_category": "period_end",
+    "industry_focus": ["all"],
+    "description": "Ermittle Monatsende",
+    "tool_sequence": ["date_calculator"],
+    "input_params": {
+      "date": {"type": "date"}
+    },
+    "expected_output": "month_end",
+    "instruction_pattern": "Was ist der letzte Tag des Monats für {date}?"
+  },
+  {
+    "template_id": "TU-014",
+    "category": "date",
+    "sub_category": "period_end",
+    "industry_focus": ["all"],
+    "description": "Ermittle Quartalsende",
+    "tool_sequence": ["date_calculator"],
+    "input_params": {
+      "date": {"type": "date"}
+    },
+    "expected_output": "quarter_end",
+    "instruction_pattern": "Wann endet das Quartal für {date}?"
+  },
+  {
+    "template_id": "TU-015",
+    "category": "date",
+    "sub_category": "period_end",
+    "industry_focus": ["all"],
+    "description": "Ermittle Jahresende",
+    "tool_sequence": ["date_calculator"],
+    "input_params": {
+      "date": {"type": "date"}
+    },
+    "expected_output": "year_end",
+    "instruction_pattern": "Wann ist das Wirtschaftsjahr-Ende für {date}?"
+  },
+  {
+    "template_id": "TU-016",
+    "category": "vat_lookup",
+    "sub_category": "rate_query",
+    "industry_focus": ["all"],
+    "description": "USt-Satz für AT Normalsteuersatz",
+    "tool_sequence": ["vat_lookup"],
+    "input_params": {
+      "country": {"type": "fixed", "value": "AT"},
+      "date": {"type": "date"},
+      "category": {"type": "fixed", "value": "normal"}
+    },
+    "expected_output": "vat_rate",
+    "instruction_pattern": "Wie hoch ist der Normalsteuersatz in Österreich am {date}?"
+  },
+  {
+    "template_id": "TU-017",
+    "category": "vat_lookup",
+    "sub_category": "rate_query",
+    "industry_focus": ["all"],
+    "description": "USt-Satz für AT ermäßigt",
+    "tool_sequence": ["vat_lookup"],
+    "input_params": {
+      "country": {"type": "fixed", "value": "AT"},
+      "date": {"type": "date"},
+      "category": {"type": "fixed", "value": "reduced"}
+    },
+    "expected_output": "vat_rate",
+    "instruction_pattern": "Wie hoch ist der ermäßigte Steuersatz in Österreich am {date}?"
+  },
+  {
+    "template_id": "TU-018",
+    "category": "vat_lookup",
+    "sub_category": "rate_query",
+    "industry_focus": ["all"],
+    "description": "USt-Satz für DE Normalsteuersatz",
+    "tool_sequence": ["vat_lookup"],
+    "input_params": {
+      "country": {"type": "fixed", "value": "DE"},
+      "date": {"type": "date"},
+      "category": {"type": "fixed", "value": "normal"}
+    },
+    "expected_output": "vat_rate",
+    "instruction_pattern": "Wie hoch ist der Regelsteuersatz in Deutschland am {date}?"
+  },
+  {
+    "template_id": "TU-019",
+    "category": "vat_lookup",
+    "sub_category": "rate_query",
+    "industry_focus": ["all"],
+    "description": "USt-Satz für CH (MwSt)",
+    "tool_sequence": ["vat_lookup"],
+    "input_params": {
+      "country": {"type": "fixed", "value": "CH"},
+      "date": {"type": "date"},
+      "category": {"type": "fixed", "value": "normal"}
+    },
+    "expected_output": "vat_rate",
+    "instruction_pattern": "Wie hoch ist der Mehrwertsteuersatz in der Schweiz am {date}?"
+  },
+  {
+    "template_id": "TU-020",
+    "category": "validation",
+    "sub_category": "balance_check",
+    "industry_focus": ["all"],
+    "description": "Prüfe einfache Buchung",
+    "tool_sequence": ["balance_checker"],
+    "input_params": {
+      "amount": {"type": "amount", "min": 100, "max": 50000}
+    },
+    "expected_output": "is_balanced",
+    "instruction_pattern": "Prüfe ob dieser Buchungssatz ausgeglichen ist: Soll {amount} EUR, Haben {amount} EUR."
+  },
+  {
+    "template_id": "TU-021",
+    "category": "combined",
+    "sub_category": "vat_and_lookup",
+    "industry_focus": ["all"],
+    "description": "Berechne USt und finde Konto",
+    "tool_sequence": ["calculator", "account_lookup"],
+    "input_params": {
+      "net_amount": {"type": "amount", "min": 100, "max": 50000},
+      "vat_rate": {"type": "percentage", "values": [0.10, 0.20]}
+    },
+    "expected_output": "gross_and_account",
+    "instruction_pattern": "Berechne den Bruttobetrag für {net_amount} EUR netto bei {vat_rate_percent}% USt und nenne das passende Umsatzsteuerkonto."
+  },
+  {
+    "template_id": "TU-022",
+    "category": "combined",
+    "sub_category": "skonto_calculation",
+    "industry_focus": ["all"],
+    "description": "Berechne Skonto und Zahlungsbetrag",
+    "tool_sequence": ["calculator", "calculator"],
+    "input_params": {
+      "invoice_amount": {"type": "amount", "min": 1000, "max": 100000},
+      "discount_rate": {"type": "percentage", "values": [0.02, 0.03]}
+    },
+    "expected_output": "payment_amount",
+    "instruction_pattern": "Berechne bei einer Rechnung über {invoice_amount} EUR und {discount_rate_percent}% Skonto: Skontobetrag und Zahlbetrag."
+  },
+  {
+    "template_id": "TU-023",
+    "category": "combined",
+    "sub_category": "vat_date_lookup",
+    "industry_focus": ["all"],
+    "description": "USt-Satz nachschlagen und Brutto berechnen",
+    "tool_sequence": ["vat_lookup", "calculator"],
+    "input_params": {
+      "net_amount": {"type": "amount", "min": 100, "max": 50000},
+      "country": {"type": "fixed", "value": "AT"},
+      "date": {"type": "date"}
+    },
+    "expected_output": "gross_with_correct_rate",
+    "instruction_pattern": "Ermittle den gültigen Normalsteuersatz für Österreich am {date} und berechne den Bruttobetrag für {net_amount} EUR netto."
+  },
+  {
+    "template_id": "TU-024",
+    "category": "combined",
+    "sub_category": "full_invoice_calc",
+    "industry_focus": ["all"],
+    "description": "Vollständige Rechnungsberechnung",
+    "tool_sequence": ["calculator", "calculator", "calculator"],
+    "input_params": {
+      "net_amount": {"type": "amount", "min": 1000, "max": 50000},
+      "vat_rate": {"type": "percentage", "values": [0.10, 0.20]},
+      "discount_rate": {"type": "percentage", "values": [0.02, 0.03]}
+    },
+    "expected_output": "full_calculation",
+    "instruction_pattern": "Berechne für {net_amount} EUR netto bei {vat_rate_percent}% USt: Bruttobetrag, Skonto ({discount_rate_percent}%) und finalen Zahlbetrag."
+  },
+  {
+    "template_id": "TU-025",
+    "category": "validation",
+    "sub_category": "multi_line_balance",
+    "industry_focus": ["all"],
+    "description": "Prüfe mehrzeilige Buchung",
+    "tool_sequence": ["balance_checker"],
+    "input_params": {
+      "lines": {"type": "multi_line", "count": 4}
+    },
+    "expected_output": "is_balanced",
+    "instruction_pattern": "Prüfe ob diese mehrzeilige Buchung ausgeglichen ist."
+  }
+]

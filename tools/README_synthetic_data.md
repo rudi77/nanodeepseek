@@ -21,6 +21,31 @@ Example:
 python tools/generate_eb_dataset.py --sft-count 1000 --dpo-count 1000
 ```
 
+## Tool-Use synthetic generator
+
+- Script: `tools/generate_tool_use_dataset.py` (wrapper for `tools/tool_use_generator.py`)
+- Template library: `tools/case_library_tool_use_100.json`
+- Tool definitions: `tools/tool_definitions.json`
+- Outputs: `train_sft_tool_use_1000.jsonl`, `train_dpo_tool_use_1000.jsonl`
+
+**Features:**
+- Rule-based tool implementations (calculator, account_lookup, date_calculator, vat_lookup, balance_checker)
+- Multi-turn conversations with tool calls
+- Optional Azure OpenAI paraphrase (fallback: template text)
+- DPO pairs with wrong tool calls (WRONG_TOOL, WRONG_PARAM, MISSING_PARAM)
+
+Example:
+
+```
+# Without LLM (rule-based only)
+python tools/generate_tool_use_dataset.py --sft-count 1000 --dpo-count 1000 --no-paraphrase
+
+# With Azure OpenAI paraphrase
+python tools/generate_tool_use_dataset.py --sft-count 1000 --dpo-count 1000
+```
+
+See: `docs/tool_use_training_data.md` for detailed documentation.
+
 ## Validation and QA
 
 - Validate: `tools/validate_dataset.py`

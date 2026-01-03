@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Any, Dict, Iterable, List, Tuple
 
-from schemas import ALLOWED_SIDES, BOOKENTRY_SCHEMA_VERSION, q2
+from schemas import ALLOWED_SIDES, BOOKENTRY_SCHEMA_VERSION, TOOL_CALL_VERSION, TOOL_RESPONSE_VERSION, q2
 
 
 def _err(path: str, msg: str) -> Dict[str, Any]:
@@ -141,6 +141,112 @@ def validate_dpo_row(row: Dict[str, Any]) -> Tuple[bool, List[Dict[str, Any]]]:
         for err in entry_errors:
             if err["path"] == "schema_version":
                 errors.append(err)
+
+    return len(errors) == 0, errors
+
+
+def validate_tool_call(tool_call: Dict[str, Any]) -> Tuple[bool, List[Dict[str, Any]]]:
+    """Validate a tool call object."""
+    errors: List[Dict[str, Any]] = []
+
+    if not isinstance(tool_call, dict):
+        errors.append(_err("tool_call", "must be object"))
+        return False, errors
+
+    if "tool" not in tool_call:
+        errors.append(_err("tool_call.tool", "missing tool name"))
+
+    if "arguments" not in tool_call:
+        errors.append(_err("tool_call.arguments", "missing arguments"))
+    elif not isinstance(tool_call["arguments"], dict):
+        errors.append(_err("tool_call.arguments", "arguments must be object"))
+
+    return len(errors) == 0, errors
+
+
+def validate_sft_tool_use_row(row: Dict[str, Any]) -> Tuple[bool, List[Dict[str, Any]]]:
+    """Validate SFT row with tool use."""
+    errors: List[Dict[str, Any]] = []
+
+    if row.get("schema_version") is None:
+        errors.append(_err("schema_version", "missing"))
+
+    messages = row.get("messages")
+    if not isinstance(messages, list) or len(messages) < 2:
+        errors.append(_err("messages", "must contain at least system and user"))
+        return False, errors
+
+    # Check for tool calls in assistant messages
+    has_tool_calls = False
+    for idx, msg in enumerate(messages):
+        if not isinstance(msg, dict):
+            errors.append(_err(f"messages[{idx}]", "must be object"))
+            continue
+
+        role = msg.get("role")
+        if role == "assistant" and "tool_calls" in msg:
+            has_tool_calls = True
+            tool_calls = msg["tool_calls"]
+            if not isinstance(tool_calls, list):
+                errors.append(_err(f"messages[{idx}].tool_calls", "must be list"))
+            else:
+                for tc_idx, tc in enumerate(tool_calls):
+                    ok_tc, tc_errors = validate_tool_call(tc)
+                    for err in tc_errors:
+                        errors.append(_err(f"messages[{idx}].tool_calls[{tc_idx}].{err['path']}", err["error"]))
+
+        elif role == "tool":
+            # Validate tool response
+            content = msg.get("content")
+            if not isinstance(content, str):
+                errors.append(_err(f"messages[{idx}].content", "tool content must be JSON string"))
+            else:
+                try:
+                    import json
+                    tool_resp = json.loads(content)
+                    if "tool" not in tool_resp:
+                        errors.append(_err(f"messages[{idx}].content.tool", "missing tool name"))
+                except Exception:
+                    errors.append(_err(f"messages[{idx}].content", "not valid JSON"))
+
+    meta = row.get("meta", {})
+    if meta.get("has_tool_calls") and not has_tool_calls:
+        errors.append(_err("meta.has_tool_calls", "meta says has_tool_calls but none found"))
+
+    return len(errors) == 0, errors
+
+
+def validate_dpo_tool_use_row(row: Dict[str, Any]) -> Tuple[bool, List[Dict[str, Any]]]:
+    """Validate DPO row with tool use."""
+    errors: List[Dict[str, Any]] = []
+
+    for key in ("prompt", "chosen", "rejected"):
+        if key not in row:
+            errors.append(_err(key, "missing"))
+
+    if errors:
+        return False, errors
+
+    def _load_messages(label: str, payload: str) -> Tuple[bool, List[Dict[str, Any]] | None]:
+        try:
+            import json
+            msgs = json.loads(payload)
+            if not isinstance(msgs, list):
+                errors.append(_err(label, "must be list of messages"))
+                return False, None
+            return True, msgs
+        except Exception:
+            errors.append(_err(label, "not valid JSON"))
+            return False, None
+
+    ok_chosen, chosen_msgs = _load_messages("chosen", row.get("chosen", ""))
+    ok_rejected, rejected_msgs = _load_messages("rejected", row.get("rejected", ""))
+
+    # Validate structure (light validation for rejected as it's expected to be wrong)
+    if ok_chosen and chosen_msgs:
+        for idx, msg in enumerate(chosen_msgs):
+            if not isinstance(msg, dict) or "role" not in msg:
+                errors.append(_err(f"chosen[{idx}]", "invalid message structure"))
 
     return len(errors) == 0, errors
 
