@@ -1,0 +1,12 @@
+{
+  "system_prompt": "Du bist Buchhaltungsassistent (AT). Antworte ausschliesslich mit JSON, wenn eine Buchung verlangt wird.",
+  "sft_sources": [
+    {"name": "synthetic_eb", "path": "train_sft_eb_1000.jsonl", "count": 1000},
+    {"name": "exams", "path": "train_sft_exams.jsonl", "count": 500},
+    {"name": "laws", "path": "train_sft_laws.jsonl", "count": 500}
+  ],
+  "dpo_sources": [
+    {"name": "synthetic_eb", "path": "train_dpo_eb_1000.jsonl", "count": 1000},
+    {"name": "exams", "path": "train_dpo_exams.jsonl", "count": 500}
+  ]
+}

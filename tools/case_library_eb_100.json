@@ -1,0 +1,2283 @@
+[
+  {
+    "template_id": "EB-001",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Bankguthaben laut Kontoauszug",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Bank",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-002",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kassa-Barbestand",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 25000
+    },
+    "booking": {
+      "debit_label": "Kassa",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-003",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Fremdwährungskonto Bank (EUR-Wert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 150000
+    },
+    "booking": {
+      "debit_label": "Bank (Fremdwährung)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-004",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Sparkonto / Rücklagenkonto (Bank)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 400000
+    },
+    "booking": {
+      "debit_label": "Bank (Sparkonto)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-005",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "ecommerce",
+      "dienstleistung",
+      "handel"
+    ],
+    "description": "PayPal-Guthaben",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 80000
+    },
+    "booking": {
+      "debit_label": "PayPal (Guthaben)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-006",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "ecommerce"
+    ],
+    "description": "Stripe/Clearing-Guthaben",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 120000
+    },
+    "booking": {
+      "debit_label": "Payment-Provider Clearing (Guthaben)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-007",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "handel",
+      "gastro",
+      "dienstleistung",
+      "ecommerce"
+    ],
+    "description": "Kreditkarten-Guthaben / Abrechnungsguthaben",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 60000
+    },
+    "booking": {
+      "debit_label": "Kreditkartenabrechnung (Guthaben)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-008",
+    "category": "Aktiva",
+    "sub_category": "Liquide Mittel",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Schwebende Geldbewegungen (noch nicht zugeordnet)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 10,
+      "max": 25000
+    },
+    "booking": {
+      "debit_label": "Schwebende Geldbewegungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-009",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kundenforderungen Inland (netto angegeben, 20% USt -> brutto buchen)",
+    "amount_model": {
+      "type": "net",
+      "min": 100,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Kundenforderungen Inland",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "net_to_gross",
+      "vat_rate": 0.2,
+      "amount_basis": "gross"
+    }
+  },
+  {
+    "template_id": "EB-010",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kundenforderungen Inland (netto angegeben, 10% USt -> brutto buchen)",
+    "amount_model": {
+      "type": "net",
+      "min": 100,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Kundenforderungen Inland (10%)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "net_to_gross",
+      "vat_rate": 0.1,
+      "amount_basis": "gross"
+    }
+  },
+  {
+    "template_id": "EB-011",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kundenforderungen EU (innergemeinschaftlich, ohne USt im Ausgangsland)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 300000
+    },
+    "booking": {
+      "debit_label": "Kundenforderungen EU",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-012",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kundenforderungen Drittland (Export, ohne USt)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 400000
+    },
+    "booking": {
+      "debit_label": "Kundenforderungen Drittland",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-013",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Sonstige Forderungen (z.B. Kautionen geleistet, Erstattungen)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 150000
+    },
+    "booking": {
+      "debit_label": "Sonstige Forderungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-014",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Forderungen gegenüber Mitarbeitern (Vorschüsse)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 15000
+    },
+    "booking": {
+      "debit_label": "Forderungen Mitarbeiter",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-015",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "gmbh",
+      "kg",
+      "og"
+    ],
+    "description": "Forderungen gegenüber Gesellschaftern",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 300000
+    },
+    "booking": {
+      "debit_label": "Forderungen Gesellschafter",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-016",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "handel",
+      "gastro",
+      "dienstleistung",
+      "ecommerce"
+    ],
+    "description": "Forderung aus Gutscheinverkauf (Einlösung ausstehend)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 80000
+    },
+    "booking": {
+      "debit_label": "Forderungen aus Gutscheinen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-017",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "handel",
+      "gastro",
+      "dienstleistung",
+      "ecommerce"
+    ],
+    "description": "Offene Forderung aus Kreditkartenabrechnung (noch nicht gutgeschrieben)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 120000
+    },
+    "booking": {
+      "debit_label": "Forderungen Kreditkartenabrechnung",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-018",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Zweifelhafte Forderungen (brutto)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 90000
+    },
+    "booking": {
+      "debit_label": "Zweifelhafte Forderungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-019",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel",
+      "ecommerce"
+    ],
+    "description": "Handelswarenlager",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 600000
+    },
+    "booking": {
+      "debit_label": "Warenlager (Handelswaren)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-020",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion",
+      "bau",
+      "handwerk"
+    ],
+    "description": "Rohstofflager",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 800000
+    },
+    "booking": {
+      "debit_label": "Vorrat Rohstoffe",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-021",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion",
+      "handwerk"
+    ],
+    "description": "Hilfsstofflager",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 350000
+    },
+    "booking": {
+      "debit_label": "Vorrat Hilfsstoffe",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-022",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion",
+      "transport",
+      "bau",
+      "gastro"
+    ],
+    "description": "Betriebsstofflager (z.B. Treibstoff)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 200000
+    },
+    "booking": {
+      "debit_label": "Vorrat Betriebsstoffe",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-023",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion"
+    ],
+    "description": "Unfertige Erzeugnisse",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 700000
+    },
+    "booking": {
+      "debit_label": "Unfertige Erzeugnisse",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-024",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion"
+    ],
+    "description": "Fertige Erzeugnisse",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 900000
+    },
+    "booking": {
+      "debit_label": "Fertige Erzeugnisse",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-025",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel",
+      "produktion",
+      "transport"
+    ],
+    "description": "Waren in Transit (noch nicht eingelagert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 400000
+    },
+    "booking": {
+      "debit_label": "Waren in Transit",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-026",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel"
+    ],
+    "description": "Konsignationsware (Bestand beim Kunden)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 300000
+    },
+    "booking": {
+      "debit_label": "Konsignationsware",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-027",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel",
+      "produktion",
+      "gastro"
+    ],
+    "description": "Emballagen/Leergut im Bestand",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Emballagen / Leergut",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-028",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel",
+      "gastro"
+    ],
+    "description": "Pfandguthaben (z.B. Kisten/Flaschen)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 50000
+    },
+    "booking": {
+      "debit_label": "Pfandguthaben",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-029",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion",
+      "bau",
+      "handwerk"
+    ],
+    "description": "Werkzeugbestand (Umlaufvermögen)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 120000
+    },
+    "booking": {
+      "debit_label": "Werkzeugbestand (Umlauf)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-030",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "produktion",
+      "transport",
+      "handwerk"
+    ],
+    "description": "Ersatzteillager",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Ersatzteillager",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-031",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel",
+      "produktion",
+      "ecommerce"
+    ],
+    "description": "Verpackungsmaterial im Lager",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 80000
+    },
+    "booking": {
+      "debit_label": "Verpackungsmaterial",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-032",
+    "category": "Aktiva",
+    "sub_category": "Vorräte",
+    "industry_focus": [
+      "handel",
+      "ecommerce",
+      "gastro"
+    ],
+    "description": "Saisonware / saisonaler Vorrat",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 500000
+    },
+    "booking": {
+      "debit_label": "Saisonware",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-033",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Grundstücke",
+    "amount_model": {
+      "type": "absolute",
+      "min": 20000,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Grundstücke",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-034",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Gebäude",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50000,
+      "max": 8000000
+    },
+    "booking": {
+      "debit_label": "Gebäude",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-035",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "produktion",
+      "handel",
+      "handwerk"
+    ],
+    "description": "Maschinen",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 1500000
+    },
+    "booking": {
+      "debit_label": "Maschinen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-036",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "produktion"
+    ],
+    "description": "Produktionsanlagen (Sammelposten)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 5000,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Produktionsanlagen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-037",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Fuhrpark – PKW (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 300000
+    },
+    "booking": {
+      "debit_label": "Fuhrpark (PKW)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-038",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "transport",
+      "bau",
+      "handwerk",
+      "handel"
+    ],
+    "description": "Fuhrpark – LKW (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 5000,
+      "max": 800000
+    },
+    "booking": {
+      "debit_label": "Fuhrpark (LKW)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-039",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Büroausstattung (BGA)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 400000
+    },
+    "booking": {
+      "debit_label": "Büroausstattung (BGA)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-040",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "IT-Hardware (Server, PCs)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 600000
+    },
+    "booking": {
+      "debit_label": "IT-Hardware",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-041",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Software-Lizenzen / immaterielle Vermögenswerte",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 800000
+    },
+    "booking": {
+      "debit_label": "Software/Lizenzen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-042",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "GWG-Sammelposten (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 150000
+    },
+    "booking": {
+      "debit_label": "GWG-Sammelposten",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-043",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "miete",
+      "immobilien",
+      "gastro",
+      "handel"
+    ],
+    "description": "Mietereinbauten (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 900000
+    },
+    "booking": {
+      "debit_label": "Mietereinbauten",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-044",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "produktion",
+      "bau",
+      "handwerk"
+    ],
+    "description": "Werkzeuge (Anlagevermögen)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 300000
+    },
+    "booking": {
+      "debit_label": "Werkzeuge (Anlage)",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-045",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Photovoltaikanlage (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 2000,
+      "max": 1200000
+    },
+    "booking": {
+      "debit_label": "Photovoltaikanlage",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-046",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "handel",
+      "gastro"
+    ],
+    "description": "Ladeneinrichtung (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 1500000
+    },
+    "booking": {
+      "debit_label": "Ladeneinrichtung",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-047",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "praxis",
+      "gesundheit"
+    ],
+    "description": "Medizintechnische Geräte (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 2500000
+    },
+    "booking": {
+      "debit_label": "Medizintechnik",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-048",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "gastro"
+    ],
+    "description": "Küchenausstattung (Buchwert)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 2500000
+    },
+    "booking": {
+      "debit_label": "Küchenausstattung",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-049",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "produktion"
+    ],
+    "description": "Maschinen in Montage / Anlagen im Bau",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 4000000
+    },
+    "booking": {
+      "debit_label": "Anlagen im Bau",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "book_value"
+    }
+  },
+  {
+    "template_id": "EB-050",
+    "category": "Aktiva",
+    "sub_category": "Anlagevermögen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Anzahlungen auf Anlagen",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Anzahlungen auf Anlagen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-051",
+    "category": "Passiva",
+    "sub_category": "Eigenkapital",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Eigenkapital Anfangsbestand (Sammelposten)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Eigenkapital"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-052",
+    "category": "Passiva",
+    "sub_category": "Eigenkapital",
+    "industry_focus": [
+      "einzelunternehmen"
+    ],
+    "description": "Privatkapital Anfangsbestand",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Privatkapital"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-053",
+    "category": "Passiva",
+    "sub_category": "Eigenkapital",
+    "industry_focus": [
+      "gmbh",
+      "kg",
+      "og"
+    ],
+    "description": "Gesellschaftereinlage / Kapitalkonto Anfangsbestand",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 8000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Kapitalkonto Gesellschafter"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-054",
+    "category": "Passiva",
+    "sub_category": "Eigenkapital",
+    "industry_focus": [
+      "gmbh"
+    ],
+    "description": "Kapitalrücklage Anfangsbestand",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 8000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Kapitalrücklage"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-055",
+    "category": "Passiva",
+    "sub_category": "Eigenkapital",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Gewinnvortrag",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Gewinnvortrag"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-056",
+    "category": "Aktiva",
+    "sub_category": "Eigenkapital-nahe Posten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Verlustvortrag (als negativer EK-Posten; in Trainingsdaten als Sollsaldo Eigenkapital-Posten modellieren)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Verlustvortrag",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance",
+      "note": "Je nach Systematik kann Verlustvortrag als Minus-EK geführt werden; hier als Aktiv-Sollsaldo für Trainingszwecke."
+    }
+  },
+  {
+    "template_id": "EB-057",
+    "category": "Passiva",
+    "sub_category": "Eigenkapital",
+    "industry_focus": [
+      "gmbh"
+    ],
+    "description": "Stammkapital (GmbH)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 10000,
+      "max": 1000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Stammkapital"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-058",
+    "category": "Aktiva",
+    "sub_category": "Forderungen",
+    "industry_focus": [
+      "gmbh",
+      "kg",
+      "og"
+    ],
+    "description": "Offene Kapitalrückzahlung (Forderung ggü. Gesellschafter)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Forderung Kapitalrückzahlung",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-059",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Lieferverbindlichkeiten Inland",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 400000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Lieferverbindlichkeiten Inland"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-060",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Lieferverbindlichkeiten Ausland",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 500000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Lieferverbindlichkeiten Ausland"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-061",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Sonstige Verbindlichkeiten (z.B. Gebühren, Abgaben)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Sonstige Verbindlichkeiten"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-062",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Verbindlichkeiten gegenüber Mitarbeitern (z.B. Spesen)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 50000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Verbindlichkeiten Mitarbeiter"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-063",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "gmbh",
+      "kg",
+      "og"
+    ],
+    "description": "Verbindlichkeiten gegenüber Gesellschaftern",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Verbindlichkeiten Gesellschafter"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-064",
+    "category": "Passiva",
+    "sub_category": "Finanzierung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kreditinstitut – kurzfristig (Kontokorrent)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 1500000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Bankkredit kurzfristig"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-065",
+    "category": "Passiva",
+    "sub_category": "Finanzierung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Kreditinstitut – langfristig",
+    "amount_model": {
+      "type": "absolute",
+      "min": 1000,
+      "max": 10000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Bankkredit langfristig"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-066",
+    "category": "Passiva",
+    "sub_category": "Finanzierung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Leasingverbindlichkeit (Restverpflichtung)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Leasingverbindlichkeit"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-067",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "immobilien",
+      "miete",
+      "handel",
+      "gastro"
+    ],
+    "description": "Mietkaution erhalten",
+    "amount_model": {
+      "type": "absolute",
+      "min": 200,
+      "max": 200000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Erhaltene Kautionen"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-068",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Anzahlungen von Kunden (erhalten)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Erhaltene Anzahlungen Kunden"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-069",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "bau",
+      "handwerk"
+    ],
+    "description": "Haftrücklass / Sicherheitseinbehalt",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Haftrücklass"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-070",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "handel",
+      "gastro",
+      "ecommerce",
+      "dienstleistung"
+    ],
+    "description": "Gutscheinverbindlichkeiten (verkauft, noch nicht eingelöst)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 500000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Gutscheinverbindlichkeiten"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-071",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "ecommerce"
+    ],
+    "description": "PayPal-Verbindlichkeit (z.B. negative Salden/Chargebacks)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 200000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "PayPal (Verbindlichkeit)"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-072",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "handel",
+      "gastro",
+      "dienstleistung",
+      "ecommerce"
+    ],
+    "description": "Kreditkartenabrechnung offen (Verbindlichkeit)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 400000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Kreditkartenabrechnung (Verbindlichkeit)"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-073",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Steuerverbindlichkeiten (Sammelposten)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Steuerverbindlichkeiten"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-074",
+    "category": "Passiva",
+    "sub_category": "Verbindlichkeiten",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Sozialversicherungsverbindlichkeiten",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 800000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "SV-Verbindlichkeiten"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-075",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Rückstellung Einkommensteuer",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung ESt"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-076",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "gmbh"
+    ],
+    "description": "Rückstellung Körperschaftsteuer",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung KSt"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-077",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Rückstellung Umsatzsteuer",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 1500000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung USt"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-078",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Rückstellung Gewährleistung/Garantie",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung Gewährleistung"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-079",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Rückstellung Urlaub",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 1500000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung Urlaub"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-080",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Rückstellung Prozessrisiko/Rechtsstreit",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung Prozessrisiko"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-081",
+    "category": "Passiva",
+    "sub_category": "Rückstellungen",
+    "industry_focus": [
+      "immobilien",
+      "produktion",
+      "bau"
+    ],
+    "description": "Rückstellung Instandhaltung",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung Instandhaltung"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-082",
+    "category": "Passiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Passive Rechnungsabgrenzung (PRAP)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "PRAP"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-083",
+    "category": "Aktiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Aktive Rechnungsabgrenzung (ARAP)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "ARAP",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-084",
+    "category": "Aktiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "dienstleistung",
+      "it",
+      "agentur"
+    ],
+    "description": "Noch nicht fakturierte Leistungen (Forderung aus Leistung)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Noch nicht fakturierte Leistungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-085",
+    "category": "Passiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Erhaltene Vorauszahlungen (PRAP-ähnlich)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Erhaltene Vorauszahlungen"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-086",
+    "category": "Passiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "dienstleistung",
+      "it",
+      "agentur"
+    ],
+    "description": "Abgrenzung Wartungsverträge (noch nicht verdienter Anteil)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "PRAP Wartungsverträge"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-087",
+    "category": "Passiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "immobilien"
+    ],
+    "description": "Abgrenzung Mieteinnahmen (noch nicht verdient)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "PRAP Mieteinnahmen"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-088",
+    "category": "Passiva",
+    "sub_category": "Abgrenzung",
+    "industry_focus": [
+      "all"
+    ],
+    "description": "Abgrenzung Leasing (noch nicht fällige Raten als PRAP)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "PRAP Leasing"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-089",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "bau"
+    ],
+    "description": "Baustellen in Arbeit (Work in Progress)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 8000000
+    },
+    "booking": {
+      "debit_label": "Baustellen in Arbeit",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-090",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "dienstleistung",
+      "it",
+      "agentur"
+    ],
+    "description": "Offene Projekte / unfertige Aufträge",
+    "amount_model": {
+      "type": "absolute",
+      "min": 500,
+      "max": 8000000
+    },
+    "booking": {
+      "debit_label": "Unfertige Aufträge/Projekte",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-091",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "praxis",
+      "gesundheit"
+    ],
+    "description": "Patientenforderungen (Inland, brutto)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 1500000
+    },
+    "booking": {
+      "debit_label": "Patientenforderungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance",
+      "note": "Gesundheitsleistungen oft steuerbefreit; Forderung als Saldo."
+    }
+  },
+  {
+    "template_id": "EB-092",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "kanzlei",
+      "recht"
+    ],
+    "description": "Honorarforderungen (Inland, brutto oder saldo)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Honorarforderungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-093",
+    "category": "Passiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "handel",
+      "ecommerce"
+    ],
+    "description": "Rückstellung für Warenrücknahmen/Preisnachlässe (Passiv)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 2000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung Warenrücknahmen"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-094",
+    "category": "Passiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "ecommerce"
+    ],
+    "description": "Retourenrückstellung (Passiv)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Rückstellung Retouren"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-095",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "ecommerce",
+      "handel"
+    ],
+    "description": "Payment-Provider Clearing Sammelkonto (Guthaben)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 800000
+    },
+    "booking": {
+      "debit_label": "Payment-Clearing Sammelkonto",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-096",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "transport",
+      "bau",
+      "handwerk"
+    ],
+    "description": "Treibstoffkarten-Abrechnung (Guthaben)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 250000
+    },
+    "booking": {
+      "debit_label": "Treibstoffkarten Guthaben",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-097",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "transport"
+    ],
+    "description": "Maut-Transponder-Guthaben",
+    "amount_model": {
+      "type": "absolute",
+      "min": 50,
+      "max": 100000
+    },
+    "booking": {
+      "debit_label": "Maut-Transponder Guthaben",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-098",
+    "category": "Passiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "npo",
+      "verein"
+    ],
+    "description": "Spendenverbindlichkeiten / noch auszuzahlende zweckgebundene Mittel",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 3000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Spendenverbindlichkeiten"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-099",
+    "category": "Passiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "verein",
+      "npo"
+    ],
+    "description": "Zweckgebundene Rücklagen (Eigenkapital-ähnlich)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 8000000
+    },
+    "booking": {
+      "debit_label": "Eröffnungsbilanzkonto",
+      "credit_label": "Zweckgebundene Rücklagen"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  },
+  {
+    "template_id": "EB-100",
+    "category": "Aktiva",
+    "sub_category": "Branche/Sonderfälle",
+    "industry_focus": [
+      "immobilien"
+    ],
+    "description": "Mietzinsvorauszahlungen (ARAP-ähnlich)",
+    "amount_model": {
+      "type": "absolute",
+      "min": 100,
+      "max": 5000000
+    },
+    "booking": {
+      "debit_label": "Mietzinsvorauszahlungen",
+      "credit_label": "Eröffnungsbilanzkonto"
+    },
+    "rules": {
+      "vat_handling": "none",
+      "amount_basis": "balance"
+    }
+  }
+]

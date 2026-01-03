@@ -1,0 +1,8 @@
+{
+  "seed": 42,
+  "sft_count": 1000,
+  "dpo_count": 1000,
+  "case_library": "tools/case_library_eb_100.json",
+  "industry_distribution": "uniform",
+  "amount_bucket_size": 100
+}
