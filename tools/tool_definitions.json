@@ -1,0 +1,126 @@
+[
+  {
+    "name": "calculator",
+    "description": "Führt mathematische Berechnungen durch. Unterstützt Grundrechenarten, Prozentrechnung, Rundung.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "description": "Mathematischer Ausdruck (z.B. '1200 * 1.20' oder 'round(1234.567, 2)')"
+        },
+        "operation": {
+          "type": "string",
+          "enum": ["calculate", "round", "percentage", "vat_gross", "vat_net"],
+          "description": "Art der Berechnung"
+        },
+        "precision": {
+          "type": "integer",
+          "description": "Dezimalstellen für Rundung (Standard: 2)",
+          "default": 2
+        }
+      },
+      "required": ["expression", "operation"]
+    }
+  },
+  {
+    "name": "account_lookup",
+    "description": "Schlägt Kontonummern in Kontenrahmen nach (SKR03, SKR04, EKR).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Suchbegriff (Kontoname oder Nummer)"
+        },
+        "chart": {
+          "type": "string",
+          "enum": ["SKR03", "SKR04", "EKR", "auto"],
+          "description": "Kontenrahmen (Standard: auto)",
+          "default": "auto"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["aktiva", "passiva", "aufwand", "ertrag", "alle"],
+          "description": "Kategorie einschränken",
+          "default": "alle"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "date_calculator",
+    "description": "Berechnet Datumsoperationen, Fristen, Zahlungsziele.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "base_date": {
+          "type": "string",
+          "description": "Ausgangsdatum (YYYY-MM-DD)"
+        },
+        "operation": {
+          "type": "string",
+          "enum": ["add_days", "add_months", "subtract_days", "business_days", "month_end", "quarter_end", "year_end"],
+          "description": "Datumsoperation"
+        },
+        "value": {
+          "type": "integer",
+          "description": "Anzahl Tage/Monate (bei add/subtract)"
+        }
+      },
+      "required": ["base_date", "operation"]
+    }
+  },
+  {
+    "name": "vat_lookup",
+    "description": "Ermittelt gültige USt-Sätze nach Land, Jahr und Leistungsart.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string",
+          "enum": ["AT", "DE", "CH"],
+          "description": "Land (AT, DE, CH)"
+        },
+        "date": {
+          "type": "string",
+          "description": "Stichtag (YYYY-MM-DD)"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["normal", "reduced", "special", "exempt"],
+          "description": "Steuerkategorie"
+        }
+      },
+      "required": ["country", "date"]
+    }
+  },
+  {
+    "name": "balance_checker",
+    "description": "Prüft Soll/Haben Balance von Buchungssätzen.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "side": {"type": "string", "enum": ["Soll", "Haben"]},
+              "amount": {"type": "number"}
+            },
+            "required": ["side", "amount"]
+          },
+          "description": "Liste von Buchungszeilen"
+        },
+        "tolerance": {
+          "type": "number",
+          "description": "Toleranz für Rundungsdifferenzen (Standard: 0.01)",
+          "default": 0.01
+        }
+      },
+      "required": ["lines"]
+    }
+  }
+]
