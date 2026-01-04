@@ -1,0 +1,281 @@
+[
+  {
+    "template_id": "tmpl_gwg_001",
+    "topic": "gwg",
+    "instruction_type": "explanation",
+    "difficulty": "basic",
+    "country_specific": true,
+    "question_templates": [
+      "Was gilt als geringwertiges Wirtschaftsgut in {country_name}?",
+      "Bis zu welchem Betrag kann ein Wirtschaftsgut in {country_name} sofort abgeschrieben werden?",
+      "Welche Grenze gilt für GWG in {country_name}?",
+      "Was versteht man unter einem GWG in {country_name}?"
+    ],
+    "required_rules": ["gwg_grenze"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "begruendung", "einschraenkungen", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_gwg_002",
+    "topic": "gwg",
+    "instruction_type": "case_assessment",
+    "difficulty": "intermediate",
+    "country_specific": true,
+    "question_templates": [
+      "Ein Unternehmer in {country_name} kauft einen Laptop für {amount} {currency}. Kann dieser als GWG behandelt werden?",
+      "Ich habe in {country_name} ein Gerät für {amount} {currency} gekauft. Ist das ein GWG?",
+      "Ein Büromöbel kostet {amount} {currency} netto in {country_name}. Wie ist das steuerlich zu behandeln?"
+    ],
+    "required_rules": ["gwg_grenze"],
+    "answer_structure": {
+      "sections": ["sachverhalt", "beurteilung", "behandlung", "quelle"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": true
+    },
+    "parameters": {
+      "amount": [600, 800, 900, 1200, 1500],
+      "currency_by_country": {
+        "AT": "EUR",
+        "DE": "EUR",
+        "CH": "CHF"
+      }
+    }
+  },
+  {
+    "template_id": "tmpl_ust_vorsteuer_001",
+    "topic": "ust",
+    "instruction_type": "explanation",
+    "difficulty": "basic",
+    "country_specific": true,
+    "question_templates": [
+      "Wann ist der Vorsteuerabzug in {country_name} grundsätzlich zulässig?",
+      "Welche Voraussetzungen gelten für den Vorsteuerabzug in {country_name}?",
+      "Unter welchen Bedingungen kann ich in {country_name} Vorsteuer geltend machen?"
+    ],
+    "required_rules": ["vorsteuerabzug_voraussetzungen"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "begruendung", "voraussetzungen", "ausnahmen", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_ust_saetze_001",
+    "topic": "ust",
+    "instruction_type": "explanation",
+    "difficulty": "basic",
+    "country_specific": true,
+    "question_templates": [
+      "Welche Umsatzsteuersätze gelten in {country_name}?",
+      "Wie hoch ist die Mehrwertsteuer in {country_name}?",
+      "Was ist der Regelsteuersatz in {country_name}?"
+    ],
+    "required_rules": ["ust_standardsatz", "ust_reduziert"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "standardsatz", "reduzierter_satz", "quelle"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": false
+    }
+  },
+  {
+    "template_id": "tmpl_kleinunternehmer_001",
+    "topic": "ust",
+    "instruction_type": "explanation",
+    "difficulty": "basic",
+    "country_specific": true,
+    "question_templates": [
+      "Was ist die Kleinunternehmerregelung in {country_name}?",
+      "Welche Umsatzgrenze gilt für Kleinunternehmer in {country_name}?",
+      "Wann kann ich in {country_name} die Kleinunternehmerregelung nutzen?"
+    ],
+    "required_rules": ["kleinunternehmer_grenze"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "begruendung", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_rechnung_001",
+    "topic": "belege",
+    "instruction_type": "checklist",
+    "difficulty": "basic",
+    "country_specific": true,
+    "question_templates": [
+      "Welche Pflichtangaben muss eine Rechnung in {country_name} enthalten?",
+      "Was muss auf einer ordnungsgemäßen Rechnung in {country_name} stehen?",
+      "Welche Angaben sind für eine Rechnung in {country_name} erforderlich?"
+    ],
+    "required_rules": ["rechnung_pflichtangaben"],
+    "answer_structure": {
+      "sections": ["pflichtangaben_liste", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": false
+    }
+  },
+  {
+    "template_id": "tmpl_rechnung_002",
+    "topic": "belege",
+    "instruction_type": "process",
+    "difficulty": "intermediate",
+    "country_specific": false,
+    "question_templates": [
+      "Was ist zu tun, wenn eine Rechnung fehlerhaft ist?",
+      "Wie gehe ich vor bei einer Rechnung mit fehlenden Pflichtangaben?",
+      "Eine Rechnung ist unvollständig - was nun?"
+    ],
+    "required_rules": [],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "empfehlung"],
+      "must_include_legal_ref": false,
+      "must_include_disclaimer": false
+    }
+  },
+  {
+    "template_id": "tmpl_bewirtung_001",
+    "topic": "bewirtung",
+    "instruction_type": "explanation",
+    "difficulty": "intermediate",
+    "country_specific": true,
+    "question_templates": [
+      "Wie sind Bewirtungskosten in {country_name} steuerlich zu behandeln?",
+      "Welcher Prozentsatz der Bewirtungskosten ist in {country_name} abzugsfähig?",
+      "Was muss ich bei Bewirtungsbelegen in {country_name} beachten?"
+    ],
+    "required_rules": ["bewirtung_abzug"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "begruendung", "voraussetzungen", "risiken", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_reisekosten_001",
+    "topic": "reisekosten",
+    "instruction_type": "explanation",
+    "difficulty": "basic",
+    "country_specific": true,
+    "question_templates": [
+      "Welche Kosten zählen zu den abzugsfähigen Reisekosten bei einer Dienstreise in {country_name}?",
+      "Was kann ich bei Dienstreisen in {country_name} steuerlich absetzen?",
+      "Welche Reisekosten sind in {country_name} abzugsfähig?"
+    ],
+    "required_rules": ["reisekosten_inland"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": false
+    }
+  },
+  {
+    "template_id": "tmpl_reverse_charge_001",
+    "topic": "ust",
+    "instruction_type": "explanation",
+    "difficulty": "intermediate",
+    "country_specific": true,
+    "question_templates": [
+      "Was bedeutet das Reverse-Charge-Verfahren in {country_name}?",
+      "Wann gilt Reverse Charge in {country_name}?",
+      "Was ist die Umkehr der Steuerschuldnerschaft in {country_name}?"
+    ],
+    "required_rules": ["reverse_charge"],
+    "answer_structure": {
+      "sections": ["kurzantwort", "begruendung", "hinweis"],
+      "must_include_legal_ref": true,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_belege_fehlt_001",
+    "topic": "belege",
+    "instruction_type": "process",
+    "difficulty": "basic",
+    "country_specific": false,
+    "question_templates": [
+      "Was tun, wenn ein Beleg fehlt?",
+      "Wie verfahre ich bei einem fehlenden Beleg?",
+      "Ein Beleg ist verloren gegangen - was nun?"
+    ],
+    "required_rules": [],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "hinweis"],
+      "must_include_legal_ref": false,
+      "must_include_disclaimer": false
+    }
+  },
+  {
+    "template_id": "tmpl_uncertainty_001",
+    "topic": "allgemein",
+    "instruction_type": "uncertainty",
+    "difficulty": "intermediate",
+    "country_specific": false,
+    "question_templates": [
+      "Kann eine private Rechnung als Betriebsausgabe geltend gemacht werden?",
+      "Darf ich eine auf meinen Namen lautende Rechnung betrieblich absetzen?",
+      "Ich habe eine Rechnung mit meiner Privatadresse - ist das als Betriebsausgabe möglich?"
+    ],
+    "required_rules": [],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "pruefen", "hinweis"],
+      "must_include_legal_ref": false,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_skonto_001",
+    "topic": "ust",
+    "instruction_type": "explanation",
+    "difficulty": "intermediate",
+    "country_specific": false,
+    "question_templates": [
+      "Wie wird Skonto buchhalterisch behandelt?",
+      "Was muss ich bei Skontoabzug umsatzsteuerlich beachten?",
+      "Wie wirkt sich Skonto auf die Umsatzsteuer aus?"
+    ],
+    "required_rules": [],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "hinweis"],
+      "must_include_legal_ref": false,
+      "must_include_disclaimer": false
+    }
+  },
+  {
+    "template_id": "tmpl_kfz_privatanteil_001",
+    "topic": "abschreibung",
+    "instruction_type": "explanation",
+    "difficulty": "intermediate",
+    "country_specific": false,
+    "question_templates": [
+      "Wie ist der Privatanteil bei einem betrieblichen Kfz zu behandeln?",
+      "Was muss ich bei privater Nutzung eines Firmenwagens beachten?",
+      "Wie wird die private Kfz-Nutzung versteuert?"
+    ],
+    "required_rules": [],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "hinweis"],
+      "must_include_legal_ref": false,
+      "must_include_disclaimer": true
+    }
+  },
+  {
+    "template_id": "tmpl_periodenabgrenzung_001",
+    "topic": "allgemein",
+    "instruction_type": "explanation",
+    "difficulty": "basic",
+    "country_specific": false,
+    "question_templates": [
+      "Was versteht man unter Periodenabgrenzung?",
+      "Was ist der Zweck von Rechnungsabgrenzungsposten?",
+      "Warum ist Periodenabgrenzung wichtig?"
+    ],
+    "required_rules": [],
+    "answer_structure": {
+      "sections": ["kurzantwort", "erlaeuterung", "hinweis"],
+      "must_include_legal_ref": false,
+      "must_include_disclaimer": false
+    }
+  }
+]

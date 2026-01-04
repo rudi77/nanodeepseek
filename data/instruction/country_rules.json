@@ -1,0 +1,329 @@
+[
+  {
+    "rule_id": "gwg_grenze",
+    "topic": "gwg",
+    "description": "Threshold for low-value assets (geringwertige Wirtschaftsgüter)",
+    "countries": {
+      "AT": {
+        "threshold_net": 800,
+        "currency": "EUR",
+        "legal_reference": "§ 13 EStG",
+        "source": "Einkommensteuergesetz Österreich",
+        "notes": "Selbstständig nutzbar, beweglich"
+      },
+      "DE": {
+        "threshold_net": 800,
+        "currency": "EUR",
+        "legal_reference": "§ 6 Abs. 2 EStG",
+        "source": "Einkommensteuergesetz Deutschland",
+        "notes": "Selbstständig nutzbar, beweglich"
+      },
+      "CH": {
+        "threshold_net": 1000,
+        "currency": "CHF",
+        "legal_reference": "Art. 29 DBG",
+        "source": "Bundesgesetz über die direkte Bundessteuer",
+        "notes": "Selbstständig nutzbar"
+      }
+    },
+    "common_across_dach": false
+  },
+  {
+    "rule_id": "ust_standardsatz",
+    "topic": "ust",
+    "description": "Standard VAT rate",
+    "countries": {
+      "AT": {
+        "standard_rate": 0.20,
+        "legal_reference": "§ 10 Abs. 1 UStG",
+        "source": "Umsatzsteuergesetz Österreich",
+        "effective_date": "2024-01-01"
+      },
+      "DE": {
+        "standard_rate": 0.19,
+        "legal_reference": "§ 12 Abs. 1 UStG",
+        "source": "Umsatzsteuergesetz Deutschland",
+        "effective_date": "2024-01-01"
+      },
+      "CH": {
+        "standard_rate": 0.081,
+        "legal_reference": "Art. 25 MWSTG",
+        "source": "Mehrwertsteuergesetz Schweiz",
+        "effective_date": "2024-01-01",
+        "notes": "8.1% ab 2024"
+      }
+    },
+    "common_across_dach": false
+  },
+  {
+    "rule_id": "ust_reduziert",
+    "topic": "ust",
+    "description": "Reduced VAT rate",
+    "countries": {
+      "AT": {
+        "reduced_rate": 0.10,
+        "legal_reference": "§ 10 Abs. 2 UStG",
+        "source": "Umsatzsteuergesetz Österreich",
+        "applies_to": "Lebensmittel, Bücher, kulturelle Leistungen"
+      },
+      "DE": {
+        "reduced_rate": 0.07,
+        "legal_reference": "§ 12 Abs. 2 UStG",
+        "source": "Umsatzsteuergesetz Deutschland",
+        "applies_to": "Lebensmittel, Bücher, ÖPNV"
+      },
+      "CH": {
+        "reduced_rate": 0.026,
+        "legal_reference": "Art. 25 Abs. 2 MWSTG",
+        "source": "Mehrwertsteuergesetz Schweiz",
+        "applies_to": "Lebensmittel, Bücher, Zeitungen",
+        "notes": "2.6% ab 2024; zusätzlich Sondersatz 3.8% für Beherbergung"
+      }
+    },
+    "common_across_dach": false
+  },
+  {
+    "rule_id": "kleinunternehmer_grenze",
+    "topic": "ust",
+    "description": "Small business exemption threshold (Kleinunternehmerregelung)",
+    "countries": {
+      "AT": {
+        "threshold_previous_year": 35000,
+        "threshold_current_year": 40000,
+        "currency": "EUR",
+        "legal_reference": "§ 6 Abs. 1 Z 27 UStG",
+        "source": "Umsatzsteuergesetz Österreich",
+        "notes": "Umsatz netto, keine Vorsteuer abzugsfähig"
+      },
+      "DE": {
+        "threshold_previous_year": 22000,
+        "threshold_current_year": 50000,
+        "currency": "EUR",
+        "legal_reference": "§ 19 UStG",
+        "source": "Umsatzsteuergesetz Deutschland",
+        "notes": "Umsatz netto, keine Vorsteuer abzugsfähig"
+      },
+      "CH": {
+        "threshold_annual": 100000,
+        "currency": "CHF",
+        "legal_reference": "Art. 10 MWSTG",
+        "source": "Mehrwertsteuergesetz Schweiz",
+        "notes": "Weltweiter Umsatz maßgeblich"
+      }
+    },
+    "common_across_dach": false
+  },
+  {
+    "rule_id": "vorsteuerabzug_voraussetzungen",
+    "topic": "ust",
+    "description": "Prerequisites for input VAT deduction (Vorsteuerabzug)",
+    "countries": {
+      "AT": {
+        "legal_reference": "§ 12 UStG",
+        "requirements": [
+          "Unternehmer im Sinne des UStG",
+          "Leistung für das Unternehmen",
+          "Ordnungsgemäße Rechnung gemäß § 11 UStG"
+        ],
+        "source": "Umsatzsteuergesetz Österreich"
+      },
+      "DE": {
+        "legal_reference": "§ 15 Abs. 1 UStG",
+        "requirements": [
+          "Unternehmer im Sinne des UStG",
+          "Leistung für das Unternehmen",
+          "Ordnungsgemäße Rechnung gemäß § 14 UStG"
+        ],
+        "source": "Umsatzsteuergesetz Deutschland"
+      },
+      "CH": {
+        "legal_reference": "Art. 28 MWSTG",
+        "requirements": [
+          "Steuerpflichtige Person",
+          "Verwendung für steuerbare Leistungen",
+          "Nachweis durch Rechnung"
+        ],
+        "source": "Mehrwertsteuergesetz Schweiz"
+      }
+    },
+    "common_across_dach": true,
+    "common_principle": "Vorsteuerabzug setzt ordnungsgemäße Rechnung und unternehmerische Verwendung voraus"
+  },
+  {
+    "rule_id": "rechnung_pflichtangaben",
+    "topic": "belege",
+    "description": "Mandatory invoice information",
+    "countries": {
+      "AT": {
+        "legal_reference": "§ 11 UStG",
+        "required_fields": [
+          "Name und Anschrift des leistenden Unternehmers",
+          "Name und Anschrift des Leistungsempfängers",
+          "UID-Nummer",
+          "Ausstellungsdatum",
+          "Fortlaufende Rechnungsnummer",
+          "Menge und Art der Leistung",
+          "Entgelt und Steuerbetrag",
+          "Steuersatz"
+        ],
+        "source": "Umsatzsteuergesetz Österreich"
+      },
+      "DE": {
+        "legal_reference": "§ 14 UStG",
+        "required_fields": [
+          "Name und Anschrift des leistenden Unternehmers",
+          "Name und Anschrift des Leistungsempfängers",
+          "Steuernummer oder USt-IdNr.",
+          "Ausstellungsdatum",
+          "Fortlaufende Rechnungsnummer",
+          "Menge und Art der Leistung",
+          "Entgelt und Steuerbetrag",
+          "Steuersatz"
+        ],
+        "source": "Umsatzsteuergesetz Deutschland"
+      },
+      "CH": {
+        "legal_reference": "Art. 26 MWSTG",
+        "required_fields": [
+          "Name und Adresse der leistungserbringenden Person",
+          "UID-Nummer",
+          "Datum der Leistungserbringung oder Lieferung",
+          "Art und Umfang der Leistung",
+          "Entgelt",
+          "Steuerbetrag"
+        ],
+        "source": "Mehrwertsteuergesetz Schweiz"
+      }
+    },
+    "common_across_dach": true,
+    "common_principle": "Rechnungen müssen leistungserbringer, Leistung und Steuer eindeutig ausweisen"
+  },
+  {
+    "rule_id": "bewirtung_abzug",
+    "topic": "bewirtung",
+    "description": "Deductibility of entertainment expenses",
+    "countries": {
+      "AT": {
+        "deductible_percentage": 1.0,
+        "legal_reference": "§ 4 Abs. 4 EStG",
+        "requirements": [
+          "Geschäftlicher Anlass",
+          "Angemessenheit",
+          "Dokumentation (bewirtete Personen, Anlass)"
+        ],
+        "notes": "100% abzugsfähig bei Nachweis geschäftlicher Veranlassung",
+        "source": "Einkommensteuergesetz Österreich"
+      },
+      "DE": {
+        "deductible_percentage": 0.70,
+        "legal_reference": "§ 4 Abs. 5 Nr. 2 EStG",
+        "requirements": [
+          "Geschäftlicher Anlass",
+          "Angemessenheit",
+          "Dokumentation (bewirtete Personen, Anlass)",
+          "Maschinell erstellte Rechnung"
+        ],
+        "notes": "70% der angemessenen Kosten; Vorsteuer 100% abziehbar",
+        "source": "Einkommensteuergesetz Deutschland"
+      },
+      "CH": {
+        "deductible_percentage": 1.0,
+        "legal_reference": "Art. 27 DBG",
+        "requirements": [
+          "Geschäftlicher Zusammenhang",
+          "Angemessenheit",
+          "Nachweis"
+        ],
+        "notes": "Geschäftsmässig begründete Kosten vollständig abzugsfähig",
+        "source": "Bundesgesetz über die direkte Bundessteuer"
+      }
+    },
+    "common_across_dach": false
+  },
+  {
+    "rule_id": "reisekosten_inland",
+    "topic": "reisekosten",
+    "description": "Domestic travel expenses",
+    "countries": {
+      "AT": {
+        "legal_reference": "§ 4 Abs. 5 EStG, § 26 EStG",
+        "components": [
+          "Fahrtkosten (tatsächlich oder km-Geld)",
+          "Verpflegungsmehraufwand (Taggelder)",
+          "Übernachtungskosten (tatsächlich)",
+          "Reisenebenkosten"
+        ],
+        "daily_allowances": {
+          "full_day": 26.40,
+          "partial_day_min_3h": 13.20,
+          "currency": "EUR"
+        },
+        "source": "Einkommensteuergesetz Österreich"
+      },
+      "DE": {
+        "legal_reference": "§ 9 EStG",
+        "components": [
+          "Fahrtkosten (tatsächlich oder Pauschale)",
+          "Verpflegungsmehraufwand (Pauschalen)",
+          "Übernachtungskosten (tatsächlich)",
+          "Reisenebenkosten"
+        ],
+        "daily_allowances": {
+          "full_day_24h": 28.00,
+          "partial_day_8h": 14.00,
+          "currency": "EUR"
+        },
+        "source": "Einkommensteuergesetz Deutschland"
+      },
+      "CH": {
+        "legal_reference": "Art. 26 DBG",
+        "components": [
+          "Fahrtkosten",
+          "Verpflegungskosten",
+          "Übernachtungskosten",
+          "Reisenebenkosten"
+        ],
+        "notes": "Effektive Kosten oder kantonale Pauschalen",
+        "source": "Bundesgesetz über die direkte Bundessteuer"
+      }
+    },
+    "common_across_dach": true,
+    "common_principle": "Mehraufwendungen bei beruflicher Auswärtstätigkeit sind abzugsfähig"
+  },
+  {
+    "rule_id": "reverse_charge",
+    "topic": "ust",
+    "description": "Reverse charge procedure (Umkehr der Steuerschuldnerschaft)",
+    "countries": {
+      "AT": {
+        "legal_reference": "§ 19 UStG",
+        "applies_to": [
+          "Bauleistungen",
+          "Grundstücksleistungen",
+          "Bestimmte sonstige Leistungen"
+        ],
+        "source": "Umsatzsteuergesetz Österreich"
+      },
+      "DE": {
+        "legal_reference": "§ 13b UStG",
+        "applies_to": [
+          "Bauleistungen",
+          "Gebäudereinigung",
+          "Bestimmte werklieferungen",
+          "Grenzüberschreitende sonstige Leistungen"
+        ],
+        "source": "Umsatzsteuergesetz Deutschland"
+      },
+      "CH": {
+        "legal_reference": "Art. 45 MWSTG",
+        "applies_to": [
+          "Bezugsteuer bei ausländischen Lieferanten",
+          "Leistungen im Inland von Unternehmen ohne Sitz in der Schweiz"
+        ],
+        "source": "Mehrwertsteuergesetz Schweiz"
+      }
+    },
+    "common_across_dach": true,
+    "common_principle": "Leistungsempfänger schuldet die Steuer in bestimmten Fällen"
+  }
+]
