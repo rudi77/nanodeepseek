@@ -18,8 +18,12 @@ This file provides guidance for working with the NanoDeepSeek project using Clau
 - `data/processed/`: Curated domain markdown (laws, exams, regulations)
   - `1_fachtexte_regelwerke/`: Austrian/German laws (UGB, UStG, BAO, GoBD, etc.)
   - `5_pruefungen/`: Exam materials with solutions
+- `data/instruction/`: Instruction-layer training data for assistant behavior
+  - `gold.jsonl`: 20 manually curated, high-quality instruction samples
 - `docs/`: Project documentation
-  - `prd_synthetic_training_data.md`: Product requirements document
+  - `prd_synthetic_training_data.md`: Product requirements for booking/tool-use data
+  - `prd_instruction_data.md`: Product requirements for instruction/assistant behavior data
+  - `tool_use_training_data.md`: Tool-use training data specification
   - `data_generation.md`: Data generation methodology
   - `epics_synthetic_training_data.md`: Feature epics
   - `schemas_synthetic_training_data.md`: Schema definitions
@@ -44,6 +48,39 @@ This file provides guidance for working with the NanoDeepSeek project using Clau
   - (optional) `AZURE_OPENAI_API_VERSION`
 
 ### Data Formats
+
+The project uses two main types of training data:
+1. **Booking/Tool-Use Data**: Transaction-level correctness (bookings, calculations)
+2. **Instruction Data**: Assistant behavior (tone, structure, safety, interaction)
+
+#### Instruction Dataset (assistant behavior JSONL)
+- One JSON object per line
+- Structure:
+  ```json
+  {
+    "id": "gold_001",
+    "type": "instruction",
+    "source": "manual | script | law | mixed",
+    "topic": "ust | abschreibung | belege | reisekosten | bewirtung | gwg | allgemein",
+    "language": "de",
+    "messages": [
+      {"role": "user", "content": "Clear, realistic accounting question"},
+      {"role": "assistant", "content": "Structured, cautious, factually correct response"}
+    ],
+    "meta": {
+      "difficulty": "basic | intermediate | advanced",
+      "contains_legal_reference": true,
+      "reviewed": true
+    }
+  }
+  ```
+
+**Quality requirements for assistant responses:**
+- **Structure**: Kurzantwort → Begründung → Voraussetzungen → Risiken → Hinweis
+- **Cautious language**: "grundsätzlich", "in der Regel", "abhängig vom Einzelfall"
+- **Professional tone**: Sachlich, ruhig, professionell, unterstützend
+- **Legal references**: Cite specific paragraphs (e.g., "§ 15 Abs. 1 UStG")
+- **Disclaimers**: "Diese Darstellung ersetzt keine steuerliche Beratung."
 
 #### SFT Dataset (chat JSONL)
 - One JSON object per line
@@ -175,7 +212,9 @@ When discovering new patterns, conventions, or important information:
 
 ## References
 
-- Full PRD: `docs/prd_synthetic_training_data.md`
+- Booking/Tool-Use Data PRD: `docs/prd_synthetic_training_data.md`
+- Instruction Data PRD: `docs/prd_instruction_data.md`
+- Tool-Use Training Data: `docs/tool_use_training_data.md`
 - Data generation methodology: `docs/data_generation.md`
 - Schemas: `docs/schemas_synthetic_training_data.md`
 - Epics: `docs/epics_synthetic_training_data.md`
