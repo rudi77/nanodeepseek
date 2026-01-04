@@ -72,6 +72,111 @@ python tools/validate_instruction_data.py \
 - `0`: Validation passed (≥95% pass rate)
 - `1`: Validation warning (< 95% pass rate)
 
+### `expand_country_variants.py`
+Expands gold instruction samples to AT/DE/CH country-specific variants.
+
+**Features:**
+- Adapts legal references for target country
+- Adjusts amounts, thresholds, and tax rates
+- Maintains original structure and quality
+- Uses country rules for accurate adaptation
+
+**Usage:**
+```bash
+python tools/expand_country_variants.py \
+  --input data/instruction/gold.jsonl \
+  --country-rules data/instruction/country_rules.json \
+  --output data/instruction/gold_expanded.jsonl \
+  --countries AT,DE,CH
+```
+
+**Options:**
+- `--input`: Input JSONL file (typically gold.jsonl)
+- `--country-rules`: Path to country rules JSON
+- `--output`: Output JSONL file for expanded variants
+- `--countries`: Comma-separated country codes (default: AT,DE,CH)
+- `--model`: Azure OpenAI deployment name
+- `--temperature`: LLM temperature (default: 0.3, lower for more conservative adaptation)
+- `--append`: Append to existing output file
+
+**Environment Variables:**
+- `AZURE_OPENAI_ENDPOINT`: Azure OpenAI endpoint URL
+- `AZURE_OPENAI_API_KEY`: API key
+- `AZURE_OPENAI_DEPLOYMENT`: Deployment name
+
+### `paraphrase_instruction_data.py`
+Creates paraphrased variants of instruction samples to increase linguistic diversity.
+
+**Features:**
+- Maintains semantic content and structure
+- Preserves legal references and disclaimers
+- Uses multiple paraphrasing strategies
+- Keeps professional tone and cautious language
+
+**Usage:**
+```bash
+python tools/paraphrase_instruction_data.py \
+  --input data/instruction/gold_expanded.jsonl \
+  --output data/instruction/paraphrased.jsonl \
+  --variants 3 \
+  --temperature 0.7
+```
+
+**Options:**
+- `--input`: Input JSONL file with instruction samples
+- `--output`: Output JSONL file for paraphrased samples
+- `--variants`: Number of paraphrased variants per sample (default: 2)
+- `--model`: Azure OpenAI deployment name
+- `--temperature`: LLM temperature (default: 0.7)
+- `--seed`: Random seed for reproducibility
+- `--sample-fraction`: Fraction of input to paraphrase (0.0-1.0, default: 1.0)
+- `--append`: Append to existing output file
+
+**Paraphrasing Strategies:**
+- Question reformulation
+- Answer reordering (maintaining structure)
+- Synonym variation
+- Example variation
+
+**Environment Variables:**
+- `AZURE_OPENAI_ENDPOINT`: Azure OpenAI endpoint URL
+- `AZURE_OPENAI_API_KEY`: API key
+- `AZURE_OPENAI_DEPLOYMENT`: Deployment name
+
+### `split_instruction_data.py`
+Splits instruction data into train/val/test sets with stratification and leakage control.
+
+**Features:**
+- Stratified splitting by topic, difficulty, or country
+- Automatic leakage detection
+- Distribution statistics
+- Deterministic (seeded) splits
+
+**Usage:**
+```bash
+python tools/split_instruction_data.py \
+  --input data/instruction/all_instruction_data.jsonl \
+  --output-dir data/instruction/splits \
+  --split 0.8,0.1,0.1 \
+  --stratify-by topic \
+  --seed 42
+```
+
+**Options:**
+- `--input`: Input JSONL file with all samples
+- `--output-dir`: Output directory for split files
+- `--split`: Split ratios as train,val,test (must sum to 1.0, default: 0.8,0.1,0.1)
+- `--stratify-by`: Key to stratify by (default: topic)
+- `--seed`: Random seed for reproducibility (default: 42)
+- `--leakage-keys`: Keys to check for data leakage (default: id,template_id)
+- `--no-test-split`: Only create train/val split (no test set)
+
+**Output Files:**
+- `train.jsonl`: Training samples
+- `val.jsonl`: Validation samples
+- `test.jsonl`: Test samples (if not --no-test-split)
+- `split_manifest.json`: Metadata and statistics about the split
+
 ## Data Files
 
 ### `data/instruction/country_rules.json`
@@ -157,6 +262,107 @@ python tools/generate_instruction_data.py \
   --count 100 \
   --output data/instruction/synthetic.jsonl \
   --append
+```
+
+### Complete Pipeline: Gold Samples → Country Variants → Paraphrasing → Train/Val/Test
+
+This workflow shows how to expand the 20 gold samples into a diverse training dataset:
+
+```bash
+# Step 1: Expand gold samples to country variants (20 → 60 samples)
+python tools/expand_country_variants.py \
+  --input data/instruction/gold.jsonl \
+  --country-rules data/instruction/country_rules.json \
+  --output data/instruction/gold_expanded.jsonl \
+  --countries AT,DE,CH \
+  --temperature 0.3
+
+# Step 2: Validate expanded samples
+python tools/validate_instruction_data.py \
+  --input data/instruction/gold_expanded.jsonl \
+  --report validation_gold_expanded.json \
+  --verbose
+
+# Step 3: Create paraphrased variants (60 → 180 samples with 3 variants each)
+python tools/paraphrase_instruction_data.py \
+  --input data/instruction/gold_expanded.jsonl \
+  --output data/instruction/gold_paraphrased.jsonl \
+  --variants 3 \
+  --temperature 0.7 \
+  --seed 42
+
+# Step 4: Validate paraphrased samples
+python tools/validate_instruction_data.py \
+  --input data/instruction/gold_paraphrased.jsonl \
+  --report validation_paraphrased.json \
+  --flagged-output flagged_paraphrased.jsonl
+
+# Step 5: Combine gold expanded + paraphrased samples
+cat data/instruction/gold_expanded.jsonl \
+    data/instruction/gold_paraphrased.jsonl \
+    > data/instruction/all_gold_variants.jsonl
+
+# Step 6: Split into train/val/test
+python tools/split_instruction_data.py \
+  --input data/instruction/all_gold_variants.jsonl \
+  --output-dir data/instruction/splits \
+  --split 0.8,0.1,0.1 \
+  --stratify-by topic \
+  --seed 42
+
+# Result: train.jsonl, val.jsonl, test.jsonl ready for training!
+```
+
+**Expected output:**
+- Gold: 20 samples
+- Expanded (AT/DE/CH): 60 samples
+- Paraphrased (3 variants): 180 samples
+- Total: 240 samples
+- Train: ~192 samples (80%)
+- Val: ~24 samples (10%)
+- Test: ~24 samples (10%)
+
+### Combining Gold + Synthetic Data
+
+```bash
+# 1. Start with expanded gold samples
+python tools/expand_country_variants.py \
+  --input data/instruction/gold.jsonl \
+  --output data/instruction/gold_expanded.jsonl \
+  --countries AT,DE,CH
+
+# 2. Generate synthetic samples from templates
+python tools/generate_instruction_data.py \
+  --count 500 \
+  --output data/instruction/synthetic.jsonl \
+  --seed 42
+
+# 3. Paraphrase both (to increase diversity)
+python tools/paraphrase_instruction_data.py \
+  --input data/instruction/gold_expanded.jsonl \
+  --output data/instruction/gold_paraphrased.jsonl \
+  --variants 2
+
+python tools/paraphrase_instruction_data.py \
+  --input data/instruction/synthetic.jsonl \
+  --output data/instruction/synthetic_paraphrased.jsonl \
+  --variants 1 \
+  --sample-fraction 0.5
+
+# 4. Combine all sources
+cat data/instruction/gold_expanded.jsonl \
+    data/instruction/gold_paraphrased.jsonl \
+    data/instruction/synthetic.jsonl \
+    data/instruction/synthetic_paraphrased.jsonl \
+    > data/instruction/all_combined.jsonl
+
+# 5. Split for training
+python tools/split_instruction_data.py \
+  --input data/instruction/all_combined.jsonl \
+  --output-dir data/instruction/final_splits \
+  --split 0.8,0.1,0.1 \
+  --stratify-by topic \
+  --seed 42
 ```
 
 ## Quality Standards
